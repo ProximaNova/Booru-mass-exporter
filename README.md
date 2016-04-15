@@ -66,5 +66,26 @@ Then copy (find with ctrl-f):
 Then save the text to a .bat file and run it
 
 
+---
+---
+---
 
 
+For boorus with lots of images:
+Java file:
+public class MassDownloadHuge
+{
+    public static void main(String[] args)
+    {
+       // max = 621851
+       for (int i = 1; i < 621851 + 1; i++)
+       {
+          System.out.println("wget -U \"Mozilla\" http://behoimi.org/post/show/" + i);
+       }
+    }
+}
+
+>path
+PATH=C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\xampp\php;C:\Users\user\bin\xpdfbin-win-3.04\bin64;C:\Users\user\bin\Wget;C:\Users\user\bin\FFmpeg\bin;C:\Users\user\bin\GUI_software\ImageMagick-7.0.0-0-portable-Q16-x86
+
+>java MassDownloadHuge > 0.bat
