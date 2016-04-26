@@ -89,9 +89,10 @@ Add Java to the "path" environment variable:
 
 `>SET PATH=%PATH%;c:\...\javapath`
 
-Output of "path" command:
+Output of `path` command:
 
 `>path`
+
 `PATH=C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;...`
 
 Generate the batch file:
