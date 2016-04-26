@@ -19,7 +19,7 @@ To get the file list edit this HTML:
 
 <script>
 text = "";
-for (i=1; i<#; i++) {    // # = the most recent post
+for (i=1; i<#+1; i++) {    // # = the most recent post
     text += "http://*.booru.org/index.php?page=post&s=view&id=" + i + "<br>"    // * = the hostname
 }
 document.getElementById("xx").innerHTML = text;
@@ -36,15 +36,13 @@ document.getElementById("xx").innerHTML = text;
 
 ### With tags
 
-For example, http://cheesecake.booru.org
-
 ````html
 <p id="xx">Save the text in here to a text file to download with "wget -i in.txt -O out.txt"</p>
 
 <script>
 text = "";
-for (i=1; i<17434+1; i++) {
-    text += "http://cheesecake.booru.org/index.php?page=post&s=view&id=" + i + "<br>"
+for (i=1; i<#+1; i++) {
+    text += "http://*.booru.org/index.php?page=post&s=view&id=" + i + "<br>"
 }
 document.getElementById("xx").innerHTML = text;
 </script>
@@ -81,7 +79,7 @@ public class MassDownloadHuge
        for (int i = 1; i < 621851 + 1; i++)
        {
           System.out.println("wget -U \"Mozilla\" http://.../post/show/" + i);
-//                                              replace "..." with the the domain name
+//                                              Replace "..." with the domain name.
        }
     }
 }
@@ -94,7 +92,7 @@ Add Java to the "path" environment variable:
 Output of "path" command:
 
 `>path`
-`PATH=C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;...`
+`PATH=C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;...`
 
 Generate the batch file:
 
