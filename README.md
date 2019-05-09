@@ -67,14 +67,14 @@ Then copy (find with ctrl-f):
 Then save the text to a .bat file and run it.</s>
 
 Encode to HTML entities:
-%s/\( -O ".*\)\@<=\//\&sol;/ge | %s/\( -O ".*\)\@<=\\/\&bsol;/ge | %s/\( -O ".*\)\@<=:/\&colon;/ge | %s/\( -O ".*\)\@<=\*/\&ast;/ge | %s/\( -O ".*\)\@<=?/\&quest;/ge | %s/\( -O ".*\)\@<="/\&quot;/ge | %s/\( -O ".*\)\@<=</\&lt;/ge | %s/\( -O ".*\)\@<=>/\&gt;/ge | %s/\( -O ".*\)\@<=|/\&verbar;/ge | %s/&quot;$/"/ge
+`%s/\( -O ".*\)\@<=\//\&sol;/ge | %s/\( -O ".*\)\@<=\\/\&bsol;/ge | %s/\( -O ".*\)\@<=:/\&colon;/ge | %s/\( -O ".*\)\@<=\*/\&ast;/ge | %s/\( -O ".*\)\@<=?/\&quest;/ge | %s/\( -O ".*\)\@<="/\&quot;/ge | %s/\( -O ".*\)\@<=</\&lt;/ge | %s/\( -O ".*\)\@<=>/\&gt;/ge | %s/\( -O ".*\)\@<=|/\&verbar;/ge | %s/&quot;$/"/ge`
 
 Now you have two choices:
   1. Manuelly add the title, source, and parent info to the end of the wget command(s):
      0. I will automate this with Vim sometime.
      1. Find with ctrl-f: ` id="title" `, ` name="parent" `, `Source: `
      2. Make the characters filename usable, for example, encode them to HTML entities:
-        \/:*?"<>| ---> &bsol;&sol;&colon;&ast;&quest;&quot;&lt;&gt;&verbar;
+        `\/:*?"<>| ---> &bsol;&sol;&colon;&ast;&quest;&quot;&lt;&gt;&verbar;`
      3. then change 1 to 2:
         1. wget http://... -O "[rating] [tags] [number]" to ("VFC" = "valid filename characters"):
         2. wget http://... -O "[rating] [tags] title&colon;[VFC title];parent&colon;[parent];source:[VFC source]"
@@ -82,19 +82,19 @@ Now you have two choices:
   2. Get rid of title, source, and parent by converting abnormalities into the format of 1.3.1 above
      1. Fix "title", "parent", and "source" left-overs in that order,
         there is a special character below between `<br .>` and `\n`: "^M"
-        ---> :%s/.*Rating: \(.\).*<br .>
-\n\(^.*$\)\n^.*type="text" name="title" id="title".*$\n^>\(.*\)$/\2 -O "\1 \3 IgnoreTheLastTag"/ge | %s/.*Rating: \(.\).*<br .>
-\n\(.*\)\n.*
-\n.*
-\n>\(.*\)/\2 -O "\1 \3 IgnoreTheLastTag"/ge | %s/.*Rating: \(.\).*<br .>
-\n\(.*\)\n.*<input type="text" name="title" id="title" .*\n.*
-\n.*
-\n>\(.*\)/\2 -O "\1 \3 IgnoreTheLastTag"/ge | %s/\(\.....\?\) -O "\(.*IgnoreTheLastTag\)"$/\1 -O "\2\1"/g | %s/\.jpeg"$/.jpg"/g | g!/^wget/d
+        ---> `:%s/.*Rating: \(.\).*<br .>`
+`\n\(^.*$\)\n^.*type="text" name="title" id="title".*$\n^>\(.*\)$/\2 -O "\1 \3 IgnoreTheLastTag"/ge | %s/.*Rating: \(.\).*<br .>`
+`\n\(.*\)\n.*`
+`\n.*`
+`\n>\(.*\)/\2 -O "\1 \3 IgnoreTheLastTag"/ge | %s/.*Rating: \(.\).*<br .>`
+`\n\(.*\)\n.*<input type="text" name="title" id="title" .*\n.*`
+`\n.*`
+`\n>\(.*\)/\2 -O "\1 \3 IgnoreTheLastTag"/ge | %s/\(\.....\?\) -O "\(.*IgnoreTheLastTag\)"$/\1 -O "\2\1"/g | %s/\.jpeg"$/.jpg"/g | g!/^wget/d`
 
-:let counter=0|g//let counter=counter+1|s/IgnoreTheLastTag/\=counter
+`:let counter=0|g//let counter=counter+1|s/IgnoreTheLastTag/\=counter`
 
 If you have Windows, run:
-    :%s/\(".\{247}\)\@<=.*\././g
+    `:%s/\(".\{247}\)\@<=.*\././g`
     247 characters long in the directory C:/0/
 Else if you have Linux then you don't have to change the filename size.
 
